@@ -17,10 +17,12 @@ We will take these data as reference to model all the processes of the company:
 * Employee
 * Warehouses
 * Marketing data
+* Advertising campaigns
 * Products
 * Accounting
 * Ticket
 * Providers
 * Client requests (to be added)
+* Website (to be added)
 
 This company is in the domain of grocery. It can sell any type of things.

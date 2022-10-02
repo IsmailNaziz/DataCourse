@@ -1,51 +1,56 @@
-from abstract_entity import Entity
+from abstract_entity import Entity, EntityManager
+import pandas as pd
+import os
 
-class ClientManager(object):
+class ClientManager(EntityManager):
 
-    def run(self):
-        pass
+    @property
+    def table_name(self):
+        return 'Client'
+
+    def __init__(self, nb_clients=300):
+        super().__init__()
+        self.nb_clients = nb_clients
+        self.table = pd.DataFrame()
+
+    def populate(self):
+        data = []
+        clients = [Client() for _ in range(self.nb_clients)]
+        for client in clients:
+            data.append(client.__dict__)
+        self.table = pd.DataFrame(data)
+
+    def export_csv(self, target_folder, mode='append'):
+        assert mode in ("append", "reset")
+        file_name = os.path.join(target_folder, f'{self.table_name}.csv')
+        if mode == 'append':
+            self.table.to_csv(file_name, mode='a', index=False)
+        else:
+            self.table.to_csv(file_name, index=False)
 
 class Client(Entity):
 
     def __init__(self):
-        self.client_ID = self._init_client_ID()
-        self.first_name = self._init_first_name()
-        self.last_name = self._init_last_name()
-        self.birthday = self._init_birthday()
-        self.address = self._init_address()
-        self.gender = self._init_gender()
-        self.phone_number = self._init_phone_number()
-        self.email = self._init_gender()
-        self.account_creation_date = self._init_account_creation_date()
+        self.client_ID = 4
+        self.first_name = 'po'
+        self.last_name = 'ma'
+        self.birthday = '02/07/1984'
+        self.address = 'somewhere'
+        self.gender = 'Male'
+        self.email = 'o@smth.com'
+        self.account_creation_date ='08/12/2015'
+        self.profession = 'tester'
 
-    @staticmethod
-    def _init_ID():
-        return
+    @property
+    def prefix(self):
+        return 'CL'
 
-    @staticmethod
-    def _init_birthday():
-        pass
+    @property
+    def name(self):
+        return 'Client'
 
-    @staticmethod
-    def _init_address():
-        pass
-
-    @staticmethod
-    def _init_first_name():
-        pass
-
-    @staticmethod
-    def _init_last_name():
-        pass
-
-    @staticmethod
-    def _init_gender():
-        pass
-
-    @staticmethod
-    def _init_phone_number():
-        pass
-
-    @staticmethod
-    def _init_account_creation_date():
-        pass
+if __name__ == "__main__":
+    target_folder = r'C:\Users\33768\Documents\Data course\datawarehouse'
+    CM = ClientManager()
+    CM.populate()
+    CM.export_csv(target_folder, mode='reset')
