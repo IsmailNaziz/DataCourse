@@ -1,0 +1,32 @@
+{
+"required_entities": [],
+"population_mode": "append",
+"generation_mode": "clean",
+"nb_records": 30,
+"parameters": {
+    "first_name": {"description": null,
+                   "values": {"function": "idle_func",
+                              "args": null}},
+    "last_name": {"description": null,
+                  "values": {"function": "idle_func",
+                             "args": null}},
+    "birthday": {"description": null,
+                 "values": {"function": "idle_func",
+                            "args": null}},
+    "address": {"description": null,
+                "values": {"function": "idle_func",
+                           "args": null}},
+    "gender": {"description": null,
+               "values": {"function": "idle_func",
+                          "args": null}},
+    "email": {"description": null,
+              "values": {"function": "idle_func",
+                         "args": null}},
+    "account_creation_date": {"description": null,
+                              "values": {"function": "idle_func",
+                                         "args": null}},
+    "profession": {"description": null,
+                   "values": {"function": "idle_func",
+                              "args": null}}
+              }
+}
