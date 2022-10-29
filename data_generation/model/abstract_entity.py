@@ -87,6 +87,7 @@ class Entity(ABC):
         assert mode in ("append", "reset")
         file_name = os.path.join(self.TARGET_FOLDER, f'{self.table_name}.csv')
         if mode == 'append':
+            #TODO: detect schema and if it has evolved delete
             header = False
             if os.path.exists(file_name):
                 header = True if os.path.getsize(file_name) == 0 else False
